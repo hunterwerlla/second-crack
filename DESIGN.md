@@ -37,8 +37,9 @@ can abstract the underlying implementation away
 ## Supported data output
 
 - flat file
+- The frontend
 
-## Extended data output 
+### Extended data output 
 
 - SQLite 
 - Postgres?
@@ -57,7 +58,7 @@ Most cross platform frontends are terrible, electron/nw.js with typescript may a
 ## Architecture diagram
 Device layer
 ```
-  _____________  USB/BT/Serial  _______________   hook
+  _____________  USB/BT/Serial  _______________ device interface
  |   Device    |<------------->|  Device layer |<--->
  ---------------               -----------------
 ```
@@ -65,30 +66,44 @@ Device layer
 Core
 ```              
                    Core
-  Device Layer    _________        
-          <----->|         |       frontend
-                 |         |<-------->
-          <----->|         |
-  Data Layer     |_________|        
-```
+ Device Interface  _________        
+           <----->|         |   Data interface
+                  |         |<----------->
+                  |         |   Control interface
+                  |_________|<----------->      
+``` 
 
-Data Layer
+
+Data layer 
 ```
   _____________  USB/BT/Serial  _______________   hook
  |   Device    |<------------->|  Device layer |<--->
  ---------------               -----------------
 ```
 
+Communication layer
+```
+     Data interface   ________   Frontend (websockets?)
+   <---------------->| Server |<------------>
+   Control interface |        |
+   <---------------->|________|
+                     
+```
+
 Frontend
 ```              
-                   Frontend
-           Core   __________________       
-          <----->|  chart!          | 
-                 | buttons!         |
-                 | terrible ball of |
-                 | typescript       |
-                 |__________________|        
+                         Frontend
+  communication layer   ___________________       
+      <--------------->| -chart!           | 
+                       | -buttons!         |
+                       | -terrible ball of |
+                       | typescript!       |
+                       |___________________|        
 ```
+
+### Architecture notes 
+- All data output goes through the same interface, real time streaming and bulk export are options 
+- Control encompases control and meta infromation like what things are connected
 
 ## Misc features 
 
