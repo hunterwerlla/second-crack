@@ -92,7 +92,7 @@ Device layer
 Core
 ```
                     (golang)
- Device Interface  _________        
+ Device interface  _________
            <----->|         |   Data interface
                   |  Core   |<----------->
                   |         |   Control interface
@@ -101,9 +101,9 @@ Core
 
 Data layer
 ```
-  _____________  USB/BT/Serial  _______________   hook
- |   Device    |<------------->|  Device layer |<--->
- ---------------               -----------------
+  _____________  USB/BT/Serial  _______________   Device interface
+ |   Device    |<------------->|  Device layer |<----------------->
+ |_____________|               |_______________|
 ```
 
 Communication layer
