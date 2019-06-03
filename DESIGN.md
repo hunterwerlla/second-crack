@@ -5,23 +5,26 @@
 This is a document to collect thoughts about architecture/languages/features. Primarially it's for
  figuring out what would actually be an improvement in the space.
 
-## improvements over Artisan
+## Improvements over Artisan
+- **Personally** Means this is my suggestive personal opinion
 - Artisan contains one giant main.py file. While it is being broken up currently, it is still over 55k lines,
-pychram refuses to even syntax highlight it without manual config changes
-- Artisan was built up over time leading to duplication. For example, adding a device requires at least 4 changes
-in main.py
-- Artisan has no tests which makes it hard to change
-- Artisan has good usage and good feautres, but seems to be scary for developers to contribute to
+pychram refuses to even syntax highlight it without manual config changes.
+  - **Personally** I find this too impenitrable
+- Artisan was built up over time leading to duplication. For example, adding a device requires changes in
+at least 4 places in main.py and an additional adapter for actually interacting with the device
+- Artisan has no tests
 - Using a client/server architecture means the frontend can be accessed on any web connected device, and means
-it has a good seperation of layers
-  - Of course, this comes with all of the downsides of client/server architecture including possible code duplication,
-  communication issues, and increased resource usage when run on one device
+it has seperation of the presentation and data processing layers
+  - Of course, this comes with all of the downsides of client/server architecture including possible code duplication
+  between languages, communication issues, and increased resource usage when run on one device
 - **Personally** I find python hard to work with for large projects, type checking is important for not having type
 issues at runtime. This is especially compounded when the amount of features and devices supported is high.
+- **Personally** I want to stop direct contributions into master as fast as possible
+
 
 ## General architecture
 
-Proposal: Program will follow a multiple process architecture to take advantage of the advantages
+The program will follow a multiple process architecture to take advantage of the advantages
 of different languages and the limitations of hardware.
 
 ## Components needed
