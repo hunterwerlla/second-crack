@@ -10,11 +10,13 @@ This is a document to collect thoughts about architecture/languages/features. Pr
 Proposal: Program will follow a multiple process architecture to take advantage of the advantages
 of different languages and the limitations of hardware.
 
-## Components needed:
+## Components needed
+
+### MVP 
 - Device communication layer (serial, hottop only)
 - Local database communication (to store data locally)
 - Builds on Linux
-- Presentation layer (that connects to the )
+- Presentation layer (that connects to the core)
 
 ### Extended Components
 - Device communication layer (BLE, Serial multiple devices)
@@ -24,6 +26,7 @@ of different languages and the limitations of hardware.
 
 ## Supported device types 
 
+### MVP
 
 - Serial (over USB or serial)
 
@@ -36,10 +39,11 @@ can abstract the underlying implementation away
 
 ## Supported data output
 
+### MVP
 - flat file
 - The frontend
 
-### Extended data output 
+### Extended data output
 
 - SQLite 
 - Postgres?
@@ -51,9 +55,11 @@ can abstract the underlying implementation away
 
 ## Front end 
 
-- Node/typescript?
+- Node/typescript
 
-Most cross platform frontends are terrible, electron/nw.js with typescript may actually be the best option
+Notes:
+- Most cross platform frontends are terrible, especially for a chart centered application,
+electron/nw.js with typescript may actually be the best option
 
 ## Architecture diagram
 Device layer
