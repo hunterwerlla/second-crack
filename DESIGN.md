@@ -2,19 +2,19 @@
 
 ## What?
 
-This is a document to collect thoughts about architecture/languages/features. Primarially it's for
+This is a document to collect thoughts about architecture/languages/features. Primarily it's for
  figuring out what would actually be an improvement in the space.
 
 ## Improvements over Artisan
 - **Personally** Means this is my suggestive personal opinion
 - Artisan contains one giant main.py file. While it is being broken up currently, it is still over 55k lines,
 pychram refuses to even syntax highlight it without manual config changes.
-  - **Personally** I find this too impenitrable
+  - **Personally** I find this too impenetrable
 - Artisan was built up over time leading to duplication. For example, adding a device requires changes in
 at least 4 places in main.py and an additional adapter for actually interacting with the device
 - Artisan has no tests
 - Using a client/server architecture means the frontend can be accessed on any web connected device, and means
-it has seperation of the presentation and data processing layers
+it has separation of the presentation and data processing layers
   - Of course, this comes with all of the downsides of client/server architecture including possible code duplication
   between languages, communication issues, and increased resource usage when run on one device
 - **Personally** I find python hard to work with for large projects, type checking is important for not having type
@@ -108,7 +108,7 @@ Data layer
 
 Communication layer
 ```                   (golang)
-     Data interface   ________   Frontend (websockets?)
+     Data interface   ________   Frontend (http2)
    <---------------->| Server |<------------>
    Control interface |        |
    <---------------->|________|
@@ -127,7 +127,7 @@ Frontend
 
 ### Architecture notes
 - All data output goes through the same interface, real time streaming and bulk export are options
-- Control encompases control and meta infromation like what things are connected
+- Control encompass control and meta information like what things are connected
 
 ## Misc features
 
