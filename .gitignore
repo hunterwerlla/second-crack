@@ -6,3 +6,7 @@
 *.o
 *.test
 *.out
+/target
+**/*.rs.bk
+*.iml
+.idea

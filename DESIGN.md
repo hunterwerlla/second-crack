@@ -91,7 +91,7 @@ Device layer
 
 Core
 ```
-                    (golang)
+                    (rust)
  Device interface  _________
            <----->|         |   Data interface
                   |  Core   |<----------->
@@ -107,7 +107,7 @@ Data layer
 ```
 
 Communication layer
-```                   (golang)
+```                   (rust)
      Data interface   ________   Frontend (http2)
    <---------------->| Server |<------------>
    Control interface |        |
