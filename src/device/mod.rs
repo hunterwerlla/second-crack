@@ -11,8 +11,6 @@ pub struct DataPoint{
     pub data_index: i32
 }
 
-pub trait DeviceContext {}
-
 pub trait Device {
     fn poll() -> Result<Vec<DataPoint>, Error>;
     fn connect() -> Result<(), Error>;
