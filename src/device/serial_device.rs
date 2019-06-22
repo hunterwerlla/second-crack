@@ -1,13 +1,12 @@
-mod device;
-
-use device::{Device, DataPoint, DataType};
-use device::device_scanner::{serial_scanner, Scanner};
 use std::fmt::Error;
+use serialport::SerialPortInfo;
+use super::{Device, DataType, DataPoint};
 
-struct Whatever{
+pub struct SerialDevice {
+    pub info: SerialPortInfo
 }
 
-impl device::Device for Whatever {
+impl Device for SerialDevice {
     fn poll() -> Result<Vec<DataPoint>, Error>{
         let x = vec![DataPoint {
             timestamp: std::time::SystemTime::now(),
@@ -29,10 +28,4 @@ impl device::Device for Whatever {
         }
 
     }
-}
-
-fn main() {
-    let poll = Whatever::poll().unwrap();
-    println!("Hello, {}!", poll.first().unwrap().value);
-    serial_scanner::SerialScanner::scan().unwrap();
 }
