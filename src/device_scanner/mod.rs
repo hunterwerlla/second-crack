@@ -1,10 +1,10 @@
-use device::Device;
 use std::fmt::Error;
+use super::Device;
 
-trait scanner {
-    fn scan() -> Result<Vec<Device>, Error>;
-}
+pub mod serial_scanner;
 
-pub fn scan_all_device_types() {
+//pub fn scan_all_device_types() {}
 
+pub trait Scanner<T: Device> {
+    fn scan() -> Result<Vec<T>, Error>;
 }

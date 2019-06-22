@@ -1,6 +1,8 @@
 mod device;
+mod device_scanner;
 
 use device::{Device, DataPoint, DataType};
+use device_scanner::{serial_scanner, Scanner};
 use std::fmt::Error;
 
 struct Whatever{
@@ -33,4 +35,5 @@ impl device::Device for Whatever {
 fn main() {
     let poll = Whatever::poll().unwrap();
     println!("Hello, {}!", poll.first().unwrap().value);
+    serial_scanner::SerialScanner::scan().unwrap();
 }
