@@ -1,0 +1,13 @@
+linterOptions:
+  exclude:
+    - node_modules/**
+    - '**/*.json'
+rules:
+  semicolon:
+    options:
+      - never
+  variable-name:
+    options:
+      - check-format
+      - allow-leading-underscore
+      - ban-keywords

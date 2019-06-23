@@ -1,0 +1,39 @@
+{
+    "name": "second-crack",
+    "version": "0.0.1",
+    "description": "A second crack at ",
+    "scripts": {
+        "build": "tsc -p .",
+        "watch": "tsc -w -p .",
+        "lint": "tslint --project .",
+        "start": "npm run build && electron ./build/main.js"
+    },
+    "author": "GitHub",
+    "license": "BSD-3-Clause",
+    "devDependencies": {
+        "electron": "^5.0.5",
+        "husky": "^2.4.1",
+        "prettier": "1.18.2",
+        "pretty-quick": "^1.11.1",
+        "tslint": "^5.18.0",
+        "typescript": "^3.5.2"
+    },
+    "dependencies": {
+        "serialport": "^7.1.5"
+    },
+    "prettier": {
+        "printWidth": 80,
+        "semi": false,
+        "trailingComma": "none",
+        "tabWidth": 4,
+        "singleQuote": true,
+        "bracketSpacing": true,
+        "arrowParens": "avoid",
+        "endOfLine": "lf"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged"
+        }
+    }
+}
