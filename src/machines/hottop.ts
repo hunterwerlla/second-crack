@@ -1,8 +1,12 @@
-import { DataPoint, Device, DeviceCommunicationType } from 'device'
-import { SerialConnection } from 'connection/serial'
+import * as SerialPort from 'serialport'
 
-export class HotTop implements Device {
+import { DataPoint, Device, DeviceCommunicationType } from 'device/device'
+import { SerialConnection } from 'connection/serial'
+import { SerialDevice } from 'device/serial'
+
+export class HotTop implements Device, SerialDevice {
     private state: any
+    public serialPort: SerialPort.PortInfo | undefined
     public readonly deviceName = 'Hottop'
     public readonly deviceCommunicationType = DeviceCommunicationType.Serial
 
@@ -22,5 +26,9 @@ export class HotTop implements Device {
 
     public getSensorString(dataType: number, dataIndex: number): string {
         return ''
+    }
+
+    public checkDeviceMatches(query: any): boolean {
+        return true
     }
 }
