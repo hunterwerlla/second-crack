@@ -14,9 +14,16 @@ export interface DataPoint {
     dataIndex: number
 }
 
-export interface Device {
+export interface DeviceCommunication {
     deviceCommunicationType: DeviceCommunicationType
-    poll(): DataPoint[] | undefined
     connect(connectionOptions: any): void
+    poll(): DataPoint[] | undefined
+    command(commandParams: any): void
+}
+
+export interface DeviceInfo {
+    deviceName: string
     getSensorString(dataType: number, dataIndex: number): string
 }
+
+export interface Device extends DeviceInfo, DeviceCommunication {}
