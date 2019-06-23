@@ -1,8 +1,8 @@
 import * as SerialPort from 'serialport'
 
-import { DataPoint, Device, DeviceCommunicationType } from 'device/device'
-import { SerialConnection } from 'connection/serial'
-import { SerialDevice } from 'device/serial'
+import { DataPoint, Device, DeviceCommunicationType } from '../device/device'
+import { SerialConnection } from '../connection/serial'
+import { SerialDevice } from '../device/serial'
 
 export class HotTop implements Device, SerialDevice {
     private state: any

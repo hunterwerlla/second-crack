@@ -1,14 +1,17 @@
 {
     "compilerOptions": {
+        "target": "es6",
         "module": "commonjs",
-        "strict": true,
-        "sourceMap": true,
+        "moduleResolution": "node",
         "incremental": true,
         "outDir": "build",
         "baseUrl": ".",
         "paths": {
             "*": ["node_modules/*", "src/*"]
-        }
+        },
+        "sourceMap": true,
+        "strict": true
     },
-    "include": ["src"]
+    "include": ["src"],
+    "exclude": ["node_modules"]
 }

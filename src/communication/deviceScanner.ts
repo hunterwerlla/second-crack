@@ -1,7 +1,7 @@
 import * as SerialPort from 'serialport'
-import { supportedMachines } from 'machines/supportedMachines'
-import { Device } from 'device/device'
-import { SerialDevice } from 'device/serial'
+import { supportedMachines } from '../machines/supportedMachines'
+import { Device, DeviceCommunicationType } from '../device/device'
+import { SerialDevice } from '../device/serial'
 
 export async function findDevices() {
     return await findSerialDevices()
@@ -15,7 +15,9 @@ async function findSerialDevices(): Promise<Device[]> {
     }
     for (const machine of supportedMachines) {
         // only check serial machines
-        if (!machine.hasOwnProperty('serialPort')) {
+        if (
+            machine.deviceCommunicationType !== DeviceCommunicationType.Serial
+        ) {
             continue
         }
         const serialMachine: Device & SerialDevice = machine as Device &
