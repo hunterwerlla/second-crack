@@ -1,11 +1,10 @@
 mod device;
 
 use device::{Device, DataPoint, DataType};
-use device::device_scanner::{serial_scanner, Scanner};
 use std::fmt::Error;
+use device::device_scanner::scan_all_device_types;
 
-struct Whatever{
-}
+struct Whatever{}
 
 impl device::Device for Whatever {
     fn poll() -> Result<Vec<DataPoint>, Error>{
@@ -27,12 +26,11 @@ impl device::Device for Whatever {
             (DataType::Temperature, 0) => Some(String::from("Bean temp")),
             _ => None
         }
-
     }
 }
 
 fn main() {
     let poll = Whatever::poll().unwrap();
     println!("Hello, {}!", poll.first().unwrap().value);
-    serial_scanner::SerialScanner::scan().unwrap();
+    scan_all_device_types();
 }

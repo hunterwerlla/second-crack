@@ -6,6 +6,7 @@ pub struct SerialDevice {
     pub info: SerialPortInfo
 }
 
+// TODO get rid of this example device, the devices themselves should implement this
 impl Device for SerialDevice {
     fn poll() -> Result<Vec<DataPoint>, Error>{
         let x = vec![DataPoint {
@@ -26,6 +27,5 @@ impl Device for SerialDevice {
             (DataType::Temperature, 0) => Some(String::from("Bean temp")),
             _ => None
         }
-
     }
 }
