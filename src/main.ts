@@ -1,9 +1,10 @@
 import { app, BrowserWindow } from 'electron'
 import * as path from 'path'
-import { findDevices } from './communication/deviceScanner'
+import { findSettingsPath } from 'configuration/configuration'
 
 let mainWindow: Electron.BrowserWindow | undefined
 let popupWindow: Electron.BrowserWindow | undefined
+let settingsPath: string = findSettingsPath()
 let setupNeeded = true
 
 function setup() {
@@ -13,12 +14,14 @@ function setup() {
         webPreferences: {
             nodeIntegration: true
         },
-        parent: mainWindow
+        parent: mainWindow,
+        modal: true
     })
     popupWindow.loadFile(path.join(__dirname, '../assets/setup.html'))
     mainWindow!.blur()
 
     popupWindow.on('closed', () => {
+        popupWindow = undefined
         if (mainWindow) {
             mainWindow.focus()
         }
@@ -47,10 +50,6 @@ function start() {
     if (setupNeeded) {
         setup()
     }
-
-    findDevices().then(deviceList => {
-        console.log(deviceList)
-    })
 }
 
 app.on('ready', start)
@@ -64,5 +63,12 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
     if (mainWindow === null) {
         start()
+    }
+})
+
+const { ipcMain } = require('electron')
+ipcMain.on('device-received', (event: any, arg: any) => {
+    if (mainWindow) {
+        mainWindow.webContents.send('device-received', arg)
     }
 })

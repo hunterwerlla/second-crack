@@ -6,5 +6,38 @@
     </head>
     <body>
         <h1>Scan for devices or set up your device manually</h1>
+        <input type="button" id="scan" value="Scan" />
+        <input type="button" id="setup" value="Manual Setup" />
+        <input type="button" id="later" value="Later" />
+        <p id="devices" />
     </body>
+    <script>
+        function selectDevice(device) {
+            const { ipcRenderer } = require('electron')
+            ipcRenderer.send('device-received', device)
+            window.close()
+        }
+
+        document.getElementById('later').onclick = () => {
+            window.close()
+        }
+
+        const scanner = require('../build/communication/deviceScanner')
+        document.getElementById('scan').onclick = () => {
+            const devices = document.getElementById('devices')
+            scanner.findDevices().then(deviceList => {
+                devices.innerHTML = ''
+                for (device of deviceList) {
+                    const listItem = document.createElement('li')
+                    const button = document.createElement('input')
+                    button.type = 'button'
+                    button.value = 'Select'
+                    button.onclick = () => selectDevice(device)
+                    listItem.appendChild(button)
+                    listItem.appendChild(document.createTextNode(' ' + device.deviceName + ' ' + device.devicePort))
+                    devices.appendChild(listItem)
+                }
+            })
+        }
+    </script>
 </html>

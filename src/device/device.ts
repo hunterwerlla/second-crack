@@ -26,6 +26,10 @@ export interface DeviceInfo {
      */
     deviceName: string
     /**
+     * For devices that have a port, a human readable string
+     */
+    devicePort: string | undefined
+    /**
      * The method the device uses for communication
      */
     deviceCommunicationType: DeviceCommunicationType

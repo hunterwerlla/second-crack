@@ -23,6 +23,7 @@ async function findSerialDevices(): Promise<Device[]> {
             if (serialMachine.checkDeviceMatches(port)) {
                 let foundMachine = Object.create(serialMachine)
                 foundMachine.serialPort = port
+                foundMachine.devicePort = port.comName
                 deviceList.push(foundMachine)
             }
         }

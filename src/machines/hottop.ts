@@ -7,6 +7,7 @@ import { SerialDevice } from '../device/serial'
 export class HotTop implements Device, SerialDevice {
     private state: any
     public serialPort: SerialPort.PortInfo | undefined
+    public devicePort: string | undefined
     public readonly deviceName = 'Hottop'
     public readonly deviceCommunicationType = DeviceCommunicationType.Serial
 
