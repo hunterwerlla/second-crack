@@ -15,13 +15,10 @@ async function findSerialDevices(): Promise<Device[]> {
     }
     for (const machine of supportedMachines) {
         // only check serial machines
-        if (
-            machine.deviceCommunicationType !== DeviceCommunicationType.Serial
-        ) {
+        if (machine.deviceCommunicationType !== DeviceCommunicationType.Serial) {
             continue
         }
-        const serialMachine: Device & SerialDevice = machine as Device &
-            SerialDevice
+        const serialMachine: Device & SerialDevice = machine as Device & SerialDevice
         for (const port of serialPorts) {
             if (serialMachine.checkDeviceMatches(port)) {
                 let foundMachine = Object.create(serialMachine)
