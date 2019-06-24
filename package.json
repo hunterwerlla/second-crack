@@ -9,7 +9,8 @@
         "start": "npm run build && electron ./build/main.js",
         "nativeRebuild": "electron-rebuild"
     },
-    "author": "GitHub",
+    "repository": "https://github.com/hunterwerlla/second-crack",
+    "author": "Hunter Werlla",
     "license": "BSD-3-Clause",
     "devDependencies": {
         "@types/node": "^12.0.10",
@@ -17,6 +18,7 @@
         "electron": "^5.0.5",
         "electron-rebuild": "^1.8.5",
         "husky": "^2.4.1",
+        "node-gyp": "^5.0.1",
         "prettier": "1.18.2",
         "pretty-quick": "^1.11.1",
         "tslint": "^5.18.0",
