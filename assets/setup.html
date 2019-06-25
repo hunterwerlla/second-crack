@@ -14,7 +14,7 @@
     <script>
         function selectDevice(device) {
             const { ipcRenderer } = require('electron')
-            ipcRenderer.send('device-received', device)
+            ipcRenderer.send('initial-device-received', device)
             window.close()
         }
 

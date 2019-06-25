@@ -1,11 +1,12 @@
 import { app, BrowserWindow } from 'electron'
 import * as path from 'path'
-import { findSettingsPath } from 'configuration/configuration'
+import { createSettings, loadSettings, settingsExist, Configuration } from './configuration/configuration'
+import { Device } from 'device/device'
 
 let mainWindow: Electron.BrowserWindow | undefined
 let popupWindow: Electron.BrowserWindow | undefined
-let settingsPath: string = findSettingsPath()
-let setupNeeded = true
+let setupNeeded = false
+let settings: Configuration = { activeDevice: undefined, configuredDevices: [] }
 
 function setup() {
     popupWindow = new BrowserWindow({
@@ -45,6 +46,11 @@ function createMainWindow() {
 }
 
 function start() {
+    if (settingsExist()) {
+        settings = loadSettings()
+    } else {
+        setupNeeded = true
+    }
     createMainWindow()
 
     if (setupNeeded) {
@@ -67,8 +73,10 @@ app.on('activate', () => {
 })
 
 const { ipcMain } = require('electron')
-ipcMain.on('device-received', (event: any, arg: any) => {
-    if (mainWindow) {
-        mainWindow.webContents.send('device-received', arg)
+ipcMain.on('initial-device-received', (event: any, arg: any) => {
+    if (!mainWindow) {
+        throw new Error('Windows are in a bad state, main window closed without closing pop up!')
     }
+    settings = createSettings({ device: arg as Device })
+    mainWindow.webContents.send('settings-changed', settings)
 })

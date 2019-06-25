@@ -20,7 +20,7 @@
         </script>
         <script>
             const ipc = require('electron').ipcRenderer
-            ipc.on('device-received', (event, device) => {
+            ipc.on('settings-changed', (event, device) => {
                 console.log(device)
             })
         </script>
