@@ -48,13 +48,20 @@ function createMainWindow() {
 function start() {
     if (settingsExist()) {
         settings = loadSettings()
+        // TODO make this async and make it error handle
+        // settings!.activeDevice!.connect(undefined)
     } else {
         setupNeeded = true
     }
+
     createMainWindow()
 
     if (setupNeeded) {
         setup()
+    } else {
+        mainWindow!.on('ready-to-show', () => {
+            mainWindow!.webContents.send('settings-changed', settings)
+        })
     }
 }
 
@@ -77,6 +84,6 @@ ipcMain.on('initial-device-received', (event: any, arg: any) => {
     if (!mainWindow) {
         throw new Error('Windows are in a bad state, main window closed without closing pop up!')
     }
-    settings = createSettings({ device: arg as Device })
+    createSettings({ device: arg as Device })
     mainWindow.webContents.send('settings-changed', settings)
 })

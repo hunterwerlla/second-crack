@@ -6,7 +6,7 @@
         "build": "tsc -p .",
         "watch": "tsc -w -p .",
         "lint": "tslint --project .",
-        "start": "npm run build && electron ./build/main.js",
+        "start": "yarn build && electron ./build/main.js",
         "nativeRebuild": "electron-rebuild"
     },
     "repository": "https://github.com/hunterwerlla/second-crack",

@@ -5,23 +5,18 @@
         <title>Second Crack</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Roasing screen</h1>
         <!-- All of the Node.js APIs are available in this renderer process. -->
         We are using Node.js
+        <input type="button" id="start" value="Start" />
         <script>
-            document.write(process.versions.node)</script
-        >, Chromium
-        <script>
-            document.write(process.versions.chrome)
+            var exports = { __esModule: true }
         </script>
-        , and Electron!
-        <script>
-            document.write(process.versions.electron)
-        </script>
+        <script src="../build/roast/roast.js" />
         <script>
             const ipc = require('electron').ipcRenderer
             ipc.on('settings-changed', (event, device) => {
-                console.log(device)
+                setSettings(device)
             })
         </script>
     </body>

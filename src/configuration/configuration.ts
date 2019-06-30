@@ -30,8 +30,9 @@ export function createSettings(args: { device: Device }): Configuration {
     return configruation
 }
 
-export function loadSettings(): any {
+export function loadSettings(): Configuration {
     const settingsPath = findSettingsPath()
+    return JSON.parse(fs.readFileSync(settingsPath, 'utf8')) as Configuration
 }
 
 export function settingsExist(): boolean {
