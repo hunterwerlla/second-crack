@@ -4,6 +4,7 @@ export enum DataType {
 }
 
 export enum DeviceCommunicationType {
+    Test,
     Serial
 }
 

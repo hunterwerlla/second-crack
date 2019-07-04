@@ -4,7 +4,10 @@ import { Device, DeviceCommunicationType } from '../device/device'
 import { SerialDevice } from '../device/serial'
 
 export async function findDevices() {
-    return await findSerialDevices()
+    let deviceList = await findSerialDevices()
+    // TODO remove, dev device
+    deviceList.push(supportedMachines[0])
+    return deviceList
 }
 
 async function findSerialDevices(): Promise<Device[]> {
